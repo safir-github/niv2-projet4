@@ -1,0 +1,35 @@
+<div class="home-container">
+    <h1>Bienvenue chez Au Petit Village</h1>
+    
+    <p class="company-introduction">
+        Située au cœur de notre charmant village, Au Petit Village est une entreprise familiale dédiée à la vente de produits artisanaux et locaux. Depuis 1970, nous nous engageons à offrir à nos clients le meilleur de notre terroir, en mettant en avant les traditions et le savoir-faire de notre région.
+        
+        Notre boutique propose une sélection soigneusement choisie de produits faits main, allant des confitures maison aux objets d’artisanat en passant par les spécialités culinaires locales. Chaque article est choisi pour sa qualité, son authenticité, et pour l’histoire qu’il raconte.
+        
+        Chez Au Petit Village, nous croyons en l’importance de préserver notre patrimoine et de partager avec vous les trésors de notre région. Que vous soyez un habitant du village ou un visiteur de passage, nous vous invitons à découvrir l'âme de notre communauté à travers nos produits.
+        
+        Passez nous voir, échangez avec nous, et laissez-vous séduire par l’atmosphère chaleureuse et accueillante de Au Petit Village. Nous sommes là pour vous accueillir et partager avec vous notre passion pour l’artisanat et la tradition.
+        
+        Au Petit Village – La tradition au cœur de notre village.
+    </p>
+    
+    <div class="sort-controls">
+      <button (click)="sortProducts('asc')">Trier par prix croissant</button>
+      <button (click)="sortProducts('desc')">Trier par prix décroissant</button>
+    </div>
+  
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher un produit">
+    </div>
+  
+    <div class="product-container">
+      <div *ngFor="let product of products | search:searchTerm | sort:'price':sortOrder" class="product">
+        <h2>{{ product.name }}</h2>
+        <img [src]="product.image" alt="{{ product.name }}">
+        <p>{{ product.description }}</p>
+        <p>Prix : {{ product.price | currency:'EUR':'symbol' }}</p>
+        <button (click)="viewDetails(product.id)">Voir les détails</button>
+      </div>
+    </div>
+  </div>
+  
